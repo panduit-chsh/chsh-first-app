@@ -1,4 +1,5 @@
 const issue = require('./lib/issue');
+const pr = require('./lib/pullRequest');
 
 /**
  * Internal cache for tags by repository
@@ -20,8 +21,7 @@ async function handleEvent(context, type) {
   }
 
   if ( type =='pull_request' ) {
-    const prComment = context.pull_request({ body: 'Thanks for opening this pull request!' })
-    return context.github.pull_request.createComment(prComment);
+     return pr.CommentOnIssue(context, type);
   }
   
 }
