@@ -1,3 +1,5 @@
+const issue = require('./lib/issue');
+
 /**
  * Internal cache for tags by repository
  */
@@ -14,8 +16,7 @@ let logger;
 async function handleEvent(context, type) {
   
   if ( type == 'issue' ) {
-    const issueComment = context.issue({ body: 'Thanks for opening this issue!' });
-    return context.github.issues.createComment(issueComment);
+	  
   }
 
   if ( type =='pull_request' ) {
@@ -25,8 +26,8 @@ async function handleEvent(context, type) {
   
 }
 
-module.exports = robot => {
-  logger = robot.log;
+module.exports = app => {
+  logger = app.log;
   // see https://developer.github.com/v3/activity/events/types/#issuesevent
   app.on('issues', context => handleEvent(context, 'issue'));
   // see https://developer.github.com/v3/activity/events/types/#pullrequestevent
