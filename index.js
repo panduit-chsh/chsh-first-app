@@ -16,7 +16,7 @@ let logger;
 async function handleEvent(context, type) {
   
   if ( type == 'issue' ) {
-	  
+	 return issue.CommentOnIssue(context, type);
   }
 
   if ( type =='pull_request' ) {
